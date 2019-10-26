@@ -84,8 +84,8 @@ class DailyReportController extends Controller
      */
     public function update(DailyReportRequest $request, $id)
     {
-        $data = $request->all();
-        $this->report->find($id)->fill($data)->save();
+        $editReport = $request->all();
+        $this->report->find($id)->fill($editReport)->save();
         return redirect()->route('dailyreport.index');
     }
 
@@ -104,7 +104,7 @@ class DailyReportController extends Controller
     public function serch(Request $request)
     {
         $serchWord = $request->input('search-month');
-        $reports = $this->report->where('reporting_time','like',"%{$serchWord}%")->get();
-        return view('user.daily_report.index',compact('reports'));
+        $reports = $this->report->where('reporting_time', 'like', "%{$serchWord}%")->get();
+        return view('user.daily_report.index', compact('reports'));
     }
 }
