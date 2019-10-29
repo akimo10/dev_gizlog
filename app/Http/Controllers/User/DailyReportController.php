@@ -12,9 +12,10 @@ class DailyReportController extends Controller
 {
     private $report;
 
-    public function __construct(DailyReport $DailyReport)
+    public function __construct(DailyReport $dailyReport)
     {
-        $this->report = $DailyReport;
+        $this->middleware('auth');
+        $this->report = $dailyReport;
     }
     /**
      * Display a listing of the resource.
