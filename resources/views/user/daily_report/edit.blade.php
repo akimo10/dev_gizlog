@@ -5,7 +5,6 @@
 <div class="main-wrap">
   <div class="container">
     {{ Form::open(['route' => ['dailyreport.update',$selectReport->id], 'method' => 'put']) }}
-      {{ Form::input('hidden', 'user_id', $selectReport->user_id, ['class' => 'form-control']) }}
       <div class="form-group form-size-small">
         {{ Form::input('date', 'reporting_time', $selectReport->reporting_time, ['class' => 'form-control']) }}
         <span class="help-block"></span>
