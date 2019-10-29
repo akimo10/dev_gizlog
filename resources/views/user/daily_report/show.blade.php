@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="panel panel-success">
     <div class="panel-heading">
-      {{ $selectReport->reporting_time }} の日報
+      {{ $carbon->format('Y/m/d(D)') }} の日報
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
@@ -16,7 +16,7 @@
           </tr>
           <tr>
             <th class="table-column">Content</th>
-            <td class='td-text'>{{ $selectReport->content }}</td>
+            <td class='td-text'>{!! nl2br(e($selectReport->content), false) !!}</td>
           </tr>
         </tbody>
       </table>
@@ -25,11 +25,9 @@
   <div class="btn-bottom-wrapper">
     <a class="btn btn-edit" href="{{ route('dailyreport.edit',$selectReport->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
     <div class="btn-delete">
-      <form action="{{ route('dailyreport.destroy',$selectReport->id) }}" method="post">
-        @method('delete')
-        @CSRF
+      {{ Form::open(['route' => ['dailyreport.destroy',$selectReport->id], 'method' => 'delete']) }}
         <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o"></i></button>
-      </form>
+      {{ Form::close() }}
     </div>
   </div>
 </div>

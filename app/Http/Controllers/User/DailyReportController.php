@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DailyReport;
 use App\Http\Requests\User\DailyReportRequest;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class DailyReportController extends Controller
 {
@@ -22,7 +23,7 @@ class DailyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $require)
     {
         $reports = $this->report->all();
         return view('user.daily_report.index', compact('reports'));
@@ -61,7 +62,8 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $selectReport = $this->report->find($id);
-        return view('user.daily_report.show', compact('selectReport'));
+        $carbon = Carbon::parse($selectReport->reporting_time);
+        return view('user.daily_report.show', compact('selectReport', 'carbon'));
     }
 
     /**
@@ -102,6 +104,9 @@ class DailyReportController extends Controller
         return redirect()->route('dailyreport.index');
     }
 
+    /**
+     * 
+     */
     public function serch(Request $request)
     {
         $serchMonth = $request->input('search-month');
