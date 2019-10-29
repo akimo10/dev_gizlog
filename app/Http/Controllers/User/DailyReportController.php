@@ -103,8 +103,8 @@ class DailyReportController extends Controller
 
     public function serch(Request $request)
     {
-        $serchWord = $request->input('search-month');
-        $reports = $this->report->where('reporting_time', 'like', "%{$serchWord}%")->get();
+        $serchMonth = $request->input('search-month');
+        $reports = $this->report->where('reporting_time', 'like', $serchMonth . '%')->get();
         return view('user.daily_report.index', compact('reports'));
     }
 }
