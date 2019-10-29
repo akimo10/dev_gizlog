@@ -12,11 +12,15 @@
       </div>
       <div class="form-group">
         {{ Form::input('text', 'title', $selectReport->title, ['class' => 'form-control', 'placeholder' => 'Title']) }}
+        @if($errors->has('title'))
         <span class="help-block">{{ $errors->first('title') }}</span>
+        @endif
       </div>
       <div class="form-group">
         {{ Form::textarea('content', $selectReport->content, ['class' => 'form-control', 'placeholder' => 'content']) }}
-      <span class="help-block">{{ $errors->first('content') }}</span>
+        @if($errors->has('content'))
+        <span class="help-block">{{ $errors->first('content') }}</span>
+        @endif
       </div>
       <button type="submit" class="btn btn-success pull-right">Update</button>
     {{ Form::close() }}
