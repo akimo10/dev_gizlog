@@ -21,13 +21,13 @@
           <th class="col-xs-2"></th>
         </tr>
       </thead>
-      @foreach($reports as $DailyReport)
+      @foreach($reports as $dailyReport)
       <tbody>
           <tr class="row">
-            <td class="col-xs-2">{{ $DailyReport->reporting_time }}</td>
-            <td class="col-xs-3">{{ $DailyReport->title }}</td>
-            <td class="col-xs-5">{{ $DailyReport->content }}</td>
-            <td class="col-xs-2"><a class="btn" href="{{ route('dailyreport.show',$DailyReport->id) }}"><i class="fa fa-book"></i></a></td>
+            <td class="col-xs-2">{{ $dailyReport->reporting_time }}</td>
+            <td class="col-xs-3">{{ $dailyReport->title }}</td>
+            <td class="col-xs-5">{{ $dailyReport->content }}</td>
+            <td class="col-xs-2"><a class="btn" href="{{ route('dailyreport.show',$dailyReport->id) }}"><i class="fa fa-book"></i></a></td>
           </tr>
       </tbody>
       @endforeach
