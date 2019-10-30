@@ -19,18 +19,28 @@ class DailyReportController extends Controller
         $this->report = $dailyReport;
     }
     /**
-     * Display a listing of the resource.
+     * 日報一覧表示
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $require)
+    public function index(Request $request)
     {
-        $reports = $this->report->all();
+        $select = $request->select;
+        $value = $this->report->where('user_id', Auth::id());
+        switch ($select) {
+            case 'search':
+                $serchMonth = $request->input('search-month');
+                $value->where('reporting_time', 'like', $serchMonth . '%');
+                break;
+            default:
+                break;
+        }
+        $reports = $value->get();
         return view('user.daily_report.index', compact('reports'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 新規作成ページへの遷移
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +50,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新規作成した日報の保存
      *
      * @param  DailyReportRequest  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +64,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 詳細画面への遷移
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -67,7 +77,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 編集画面への遷移
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -79,7 +89,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 編集した日報を保存
      *
      * @param  DailyReportRequest  $request
      * @param  int  $id
@@ -93,7 +103,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 日報の削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -104,13 +114,4 @@ class DailyReportController extends Controller
         return redirect()->route('dailyreport.index');
     }
 
-    /**
-     * 
-     */
-    public function serch(Request $request)
-    {
-        $serchMonth = $request->input('search-month');
-        $reports = $this->report->where('reporting_time', 'like', $serchMonth . '%')->get();
-        return view('user.daily_report.index', compact('reports'));
-    }
 }
