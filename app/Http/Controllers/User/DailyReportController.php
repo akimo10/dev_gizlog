@@ -25,17 +25,11 @@ class DailyReportController extends Controller
      */
     public function index(Request $request)
     {
-        $select = $request->select;
-        $value = $this->report->where('user_id', Auth::id());
-        switch ($select) {
-            case 'search':
-                $serchMonth = $request->input('search-month');
-                $value->where('reporting_time', 'like', $serchMonth . '%');
-                break;
-            default:
-                break;
+        $input = $this->report->where('user_id', Auth::id());
+        if($request->has('search-month')){
+            $input->where('reporting_time', 'like', $request['search-month'] . '%');
         }
-        $reports = $value->get();
+        $reports = $input->get();
         return view('user.daily_report.index', compact('reports'));
     }
 
@@ -71,9 +65,9 @@ class DailyReportController extends Controller
      */
     public function show($id)
     {
-        $selectReport = $this->report->find($id);
-        $carbon = Carbon::parse($selectReport->reporting_time);
-        return view('user.daily_report.show', compact('selectReport', 'carbon'));
+        $selectedReport = $this->report->find($id);
+        $carbon = Carbon::parse($selectedReport->reporting_time);
+        return view('user.daily_report.show', compact('selectedReport', 'carbon'));
     }
 
     /**
@@ -84,8 +78,8 @@ class DailyReportController extends Controller
      */
     public function edit($id)
     {
-        $selectReport = $this->report->find($id);
-        return view('user.daily_report.edit', compact('selectReport'));
+        $selectedReport = $this->report->find($id);
+        return view('user.daily_report.edit', compact('selectedReport'));
     }
 
     /**
