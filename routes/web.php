@@ -47,8 +47,6 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::resource('question', QuestionController::class);
     Route::resource('dailyreport', DailyReportController::class);
 
-    Route::post('dailyreport/serch','DailyReportController@serch')->name('dailyreport.serch');
-
 });
 
 
