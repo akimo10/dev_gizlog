@@ -12,20 +12,20 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text">{{ $selectReport->title }}</td>
+            <td class="td-text">{{ $selectedReport->title }}</td>
           </tr>
           <tr>
             <th class="table-column">Content</th>
-            <td class='td-text'>{!! nl2br(e($selectReport->content), false) !!}</td>
+            <td class='td-text'>{!! nl2br(e($selectedReport->content), false) !!}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-    <a class="btn btn-edit" href="{{ route('dailyreport.edit',$selectReport->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    <a class="btn btn-edit" href="{{ route('dailyreport.edit',$selectedReport->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
     <div class="btn-delete">
-      {{ Form::open(['route' => ['dailyreport.destroy',$selectReport->id], 'method' => 'delete']) }}
+      {{ Form::open(['route' => ['dailyreport.destroy',$selectedReport->id], 'method' => 'delete']) }}
         <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o"></i></button>
       {{ Form::close() }}
     </div>
