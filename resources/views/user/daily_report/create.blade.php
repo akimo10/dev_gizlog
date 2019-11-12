@@ -9,13 +9,13 @@
         {{ Form::input('date', 'reporting_time', null, ['class' => 'form-control']) }}
         <span class="help-block"></span>
       </div>
-      <div class="form-group @if(!empty($errors->first('title'))) has-error @endif">
+      <div class="form-group @if($errors->has('title'))) has-error @endif">
         {{ Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => 'Title']) }}
         @if($errors->has('title'))
         <span class="has-error help-block">{{ $errors->first('title') }}</span>
         @endif
       </div>
-      <div class="form-group  @if(!empty($errors->first('content'))) has-error @endif">
+      <div class="form-group  @if($errors->has('content'))) has-error @endif">
         {{ Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Content']) }}
         @if($errors->has('content'))
         <span class="help-block">{{ $errors->first('content') }}</span>
