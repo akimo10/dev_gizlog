@@ -24,8 +24,8 @@ class DailyReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|max:255',
+            'content' => 'required|max:255',
         ];
     }
 
@@ -33,6 +33,7 @@ class DailyReportRequest extends FormRequest
     {
         return [
             'required' => '入力必須の項目です。',
+            'max' => '入力された文字が多すぎます。255文字以内入力してください。'
         ];
     }
 
