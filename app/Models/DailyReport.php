@@ -11,11 +11,11 @@ class DailyReport extends Model
 
     protected $fillable = [
         'user_id',
-        'reporting_time',
         'title',
         'content',
+        'reporting_time',
     ];
 
-    protected $dates = ['deleted_at', 'reporting_time'];
+    protected $dates = ['reporting_time', 'deleted_at'];
 
 }
