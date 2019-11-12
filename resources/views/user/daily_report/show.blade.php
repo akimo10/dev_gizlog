@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="panel panel-success">
     <div class="panel-heading">
-      {{ $carbon }} の日報
+      {{ $selectedReport->reporting_time->format('Y/m/d(D)') }} の日報
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
