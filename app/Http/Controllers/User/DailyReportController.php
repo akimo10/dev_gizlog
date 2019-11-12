@@ -67,7 +67,6 @@ class DailyReportController extends Controller
     {
         $selectedReport = $this->report->find($id);
         $carbon = $selectedReport->reporting_time->format('Y/m/d(D)');
-        // $carbon = Carbon::parse($selectedReport->reporting_time);
         return view('user.daily_report.show', compact('selectedReport', 'carbon'));
     }
 
