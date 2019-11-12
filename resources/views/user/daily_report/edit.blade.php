@@ -6,7 +6,7 @@
   <div class="container">
     {{ Form::open(['route' => ['dailyreport.update',$selectedReport->id], 'method' => 'put']) }}
       <div class="form-group form-size-small">
-        {{ Form::input('date', 'reporting_time', $selectedReport->reporting_time, ['class' => 'form-control']) }}
+        {{ Form::input('date', 'reporting_time', $selectedReport->reporting_time->format('Y-m-d'), ['class' => 'form-control']) }}
         <span class="help-block"></span>
       </div>
       <div class="form-group  @if($errors->has('title'))) has-error @endif">

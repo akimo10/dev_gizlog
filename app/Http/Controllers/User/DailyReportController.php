@@ -26,8 +26,8 @@ class DailyReportController extends Controller
     public function index(Request $request)
     {
         $input = $this->report->where('user_id', Auth::id());
-        if($request->has('search-month')){
-            $input->where('reporting_time', 'like', $request['search-month'] . '%');
+        if($request->filled('search-month')){
+            $input->where('reporting_time', 'like', $request->input('search-month') . '%');
         }
         $reports = $input->get();
         return view('user.daily_report.index', compact('reports'));
@@ -66,7 +66,8 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $selectedReport = $this->report->find($id);
-        $carbon = Carbon::parse($selectedReport->reporting_time);
+        $carbon = $selectedReport->reporting_time->format('Y/m/d(D)');
+        // $carbon = Carbon::parse($selectedReport->reporting_time);
         return view('user.daily_report.show', compact('selectedReport', 'carbon'));
     }
 

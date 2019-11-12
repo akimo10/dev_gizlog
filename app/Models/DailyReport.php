@@ -16,5 +16,6 @@ class DailyReport extends Model
         'content',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'reporting_time'];
+
 }

@@ -4,10 +4,10 @@
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
-    {{ Form::open(['route' => 'dailyreport.index', 'method' => 'get']) }}
-      {{ Form::input('month', 'search-month', null, ['class' => 'form-control']) }}
+    <form action="{{ route('dailyreport.index') }}" method="get">
+      <input type="month" name="search-month" value=null class="form-control">
       <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
-    {{ Form::close() }}
+    </form>
     <a class="btn btn-icon" href="{{ route('dailyreport.create') }}"><i class="fa fa-plus"></i></a>
   </div>
   <div class="content-wrapper table-responsive">
@@ -23,7 +23,7 @@
       <tbody>
         @foreach($reports as $dailyReport)
           <tr class="row">
-            <td class="col-xs-2">{{ $dailyReport->reporting_time }}</td>
+            <td class="col-xs-2">{{ $dailyReport->reporting_time->format('Y/m/d') }}</td>
             <td class="col-xs-3">{{ $dailyReport->title }}</td>
             <td class="col-xs-5">{{ $dailyReport->content }}</td>
             <td class="col-xs-2"><a class="btn" href="{{ route('dailyreport.show',$dailyReport->id) }}"><i class="fa fa-book"></i></a></td>
