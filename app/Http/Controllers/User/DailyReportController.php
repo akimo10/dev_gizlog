@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DailyReport;
 use App\Http\Requests\User\DailyReportRequest;
+use App\Http\Requests\User\DailyReportIndexRequest;
 use Auth;
 use Illuminate\Support\Carbon;
 
@@ -23,7 +24,7 @@ class DailyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(DailyReportIndexRequest $request)
     {
         $reports = $this->report->getMyReports($request);
         return view('user.daily_report.index', compact('reports'));

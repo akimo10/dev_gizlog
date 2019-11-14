@@ -24,7 +24,7 @@ class DailyReport extends Model
     {
         $userReports = $this->where('user_id', Auth::id());
         if($request->filled('search-month')){
-          $userReports->where('reporting_time', 'like', $request->input('search-month') . '%');
+            $userReports->where('reporting_time', 'like', $request->input('search-month') . '%');
         }
         return $userReports->get();
     }
