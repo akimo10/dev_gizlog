@@ -26,6 +26,7 @@ class DailyReportRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'content' => 'required|max:255',
+            'reporting_time' => 'date|before_or_equal:"now"',
         ];
     }
 
@@ -33,7 +34,9 @@ class DailyReportRequest extends FormRequest
     {
         return [
             'required' => '入力必須の項目です。',
-            'max' => '入力された文字が多すぎます。255文字以内入力してください。'
+            'max' => '入力された文字が多すぎます。255文字以内入力してください。',
+            'before_or_equal' => '未来の日付です。',
+            'date' => '日付を入力してください。',
         ];
     }
 

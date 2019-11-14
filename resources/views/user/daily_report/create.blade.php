@@ -5,14 +5,16 @@
 <div class="main-wrap">
   <div class="container">
     {{ Form::open(['route' => 'dailyreport.store' ]) }}
-      <div class="form-group form-size-small">
+      <div class="form-group form-size-small @if($errors->has('reporting_time')) has-error @endif">
         {{ Form::input('date', 'reporting_time', null, ['class' => 'form-control']) }}
-        <span class="help-block"></span>
+        @if($errors->has('reporting_time'))
+        <span class="help-block">{{ $errors->first('reporting_time') }}</span>
+        @endif
       </div>
       <div class="form-group @if($errors->has('title'))) has-error @endif">
         {{ Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => 'Title']) }}
         @if($errors->has('title'))
-        <span class="has-error help-block">{{ $errors->first('title') }}</span>
+        <span class="help-block">{{ $errors->first('title') }}</span>
         @endif
       </div>
       <div class="form-group  @if($errors->has('content'))) has-error @endif">
