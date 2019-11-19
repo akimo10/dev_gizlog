@@ -8,7 +8,6 @@ use App\Models\DailyReport;
 use App\Http\Requests\User\DailyReportRequest;
 use App\Http\Requests\User\DailyReportIndexRequest;
 use Auth;
-use Illuminate\Support\Carbon;
 
 class DailyReportController extends Controller
 {
