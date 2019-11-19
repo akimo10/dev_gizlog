@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Auth;
 
 class DailyReport extends Model
 {
@@ -18,7 +17,6 @@ class DailyReport extends Model
     ];
 
     protected $dates = ['reporting_time', 'deleted_at'];
-
 
     public function getMyReports($searchMonth,$id)
     {
