@@ -4,10 +4,10 @@
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
-    <form action="{{ route('dailyreport.index') }}" method="get">
-      <input type="month" name="search-month" value=null class="form-control">
-      <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
-    </form>
+    {{ Form::open(['route'=>'dailyreport.index', 'method'=>'get']) }}
+    {{ Form::month('search-month', null, ['class' => 'form-control']) }}
+    {{ Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-icon', 'type'=>'submit']) }}
+    {{ Form::close() }}
     <a class="btn btn-icon" href="{{ route('dailyreport.create') }}"><i class="fa fa-plus"></i></a>
   </div>
   <div class="content-wrapper table-responsive">
