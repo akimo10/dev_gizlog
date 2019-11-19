@@ -23,7 +23,7 @@
         <span class="help-block">{{ $errors->first('content') }}</span>
         @endif
       </div>
-      <button type="submit" class="btn btn-success pull-right">Update</button>
+      {{ Form::submit('Update', ['class' => 'btn btn-success pull-right']) }}
     {{ Form::close() }}
   </div>
 </div>
