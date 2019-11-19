@@ -5,8 +5,8 @@
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
     {{ Form::open(['route'=>'dailyreport.index', 'method'=>'get']) }}
-    {{ Form::month('search-month', null, ['class' => 'form-control']) }}
-    {{ Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-icon', 'type'=>'submit']) }}
+      {{ Form::month('search-month', null, ['class' => 'form-control']) }}
+      {{ Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-icon', 'type'=>'submit']) }}
     {{ Form::close() }}
     <a class="btn btn-icon" href="{{ route('dailyreport.create') }}"><i class="fa fa-plus"></i></a>
   </div>
