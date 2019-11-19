@@ -18,6 +18,7 @@ class DailyReportController extends Controller
         $this->middleware('auth');
         $this->report = $dailyReport;
     }
+    
     /**
      * 日報一覧表示4
      * @param DailyReportIndexRequest $request
