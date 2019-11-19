@@ -19,20 +19,21 @@ class DailyReportController extends Controller
         $this->report = $dailyReport;
     }
     /**
-     * 日報一覧表示
-     *
-     * @return \Illuminate\Http\Response
+     * 日報一覧表示4
+     * @param DailyReportIndexRequest $request
+     * @return \Illuminate\View\View
      */
     public function index(DailyReportIndexRequest $request)
     {
-        $reports = $this->report->getMyReports($request);
+        $selectedMonth = $request->input('search-month');
+        $reports = $this->report->getMyReports($selectedMonth, Auth::id());
         return view('user.daily_report.index', compact('reports'));
     }
 
     /**
-     * 新規作成ページへの遷移
+     * 新規作成ページ画面表示
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -43,7 +44,7 @@ class DailyReportController extends Controller
      * 新規作成した日報の保存
      *
      * @param  DailyReportRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function store(DailyReportRequest $request)
     {
@@ -54,10 +55,10 @@ class DailyReportController extends Controller
     }
 
     /**
-     * 詳細画面への遷移
+     * 詳細画面表示
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -66,10 +67,10 @@ class DailyReportController extends Controller
     }
 
     /**
-     * 編集画面への遷移
+     * 編集画面表示
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -82,7 +83,7 @@ class DailyReportController extends Controller
      *
      * @param  DailyReportRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
     public function update(DailyReportRequest $request, $id)
     {
@@ -95,7 +96,7 @@ class DailyReportController extends Controller
      * 日報の削除
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

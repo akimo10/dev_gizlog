@@ -20,13 +20,13 @@ class DailyReport extends Model
     protected $dates = ['reporting_time', 'deleted_at'];
 
 
-    public function getMyReports($request)
+    public function getMyReports($searchMonth,$id)
     {
-        $userReports = $this->where('user_id', Auth::id());
-        if($request->filled('search-month')){
-            $userReports->where('reporting_time', 'like', $request->input('search-month') . '%');
+        $userReports = $this->where('user_id', $id);
+        if(filled($searchMonth)){
+            $userReports->where('reporting_time', 'like', $searchMonth . '%');
         }
-        return $userReports->get();
+        return $userReports->orderby('reporting_time','desc')->get();
     }
 
 }
