@@ -21,7 +21,7 @@ class DailyReport extends Model
     public function getMyReports($searchMonth,$id)
     {
         $userReports = $this->where('user_id', $id);
-        if(filled($searchMonth)){
+        if (filled($searchMonth)) {
             $userReports->where('reporting_time', 'like', $searchMonth . '%');
         }
         return $userReports->orderby('reporting_time','desc')->get();
